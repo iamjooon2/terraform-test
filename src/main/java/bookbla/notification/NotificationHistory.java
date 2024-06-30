@@ -1,9 +1,6 @@
-package bookbla.block;
+package bookbla.notification;
 
-import bookbla.common.domain.BaseEntity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,18 +15,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Getter
-public class Block extends BaseEntity {
+public class NotificationHistory {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long blockerMemberId;
+    private Long memberId;
 
-    private Long blockedMemberId;
+    @Builder.Default
+    private boolean isSuccess = false;
+
+    private String title;
 
     private String contents;
 
-    @Enumerated(EnumType.STRING)
-    private BlockStatus blockStatus;
 }

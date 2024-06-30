@@ -1,9 +1,7 @@
-package bookbla.block;
+package bookbla.school;
 
-import bookbla.common.domain.BaseEntity;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,18 +16,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Getter
-public class Block extends BaseEntity {
+public class School {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long blockerMemberId;
+    @Column(unique = true)
+    private String name;
 
-    private Long blockedMemberId;
+    @Column(unique = true)
+    private String email;
 
-    private String contents;
+    @Builder.Default
+    private boolean isOpened = false;
 
-    @Enumerated(EnumType.STRING)
-    private BlockStatus blockStatus;
 }

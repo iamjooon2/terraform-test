@@ -1,12 +1,14 @@
-package bookbla.block;
+package bookbla.member.domain.token;
 
-import bookbla.common.domain.BaseEntity;
+import bookbla.member.domain.Member;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,18 +20,18 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Getter
-public class Block extends BaseEntity {
+public class Token {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long blockerMemberId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
-    private Long blockedMemberId;
-
-    private String contents;
+    private String value;
 
     @Enumerated(EnumType.STRING)
-    private BlockStatus blockStatus;
+    private TokenType tokenType;
+
 }
