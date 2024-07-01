@@ -1,0 +1,3 @@
+[submodule "bookbla-submodule"]
+	path = bookbla-submodule
+	url = https://github.com/iamjooon2/bookbla-submodule.git
